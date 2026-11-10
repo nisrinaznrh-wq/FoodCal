@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class FoodCalModel {
@@ -9,73 +8,51 @@ public class FoodCalModel {
     private MakananDAO makananDAO = new MakananDAO();
 
     // Registrasi
-    public boolean registrasi(
-            String nama, String password)
-            throws SQLException {
+    public boolean registrasi(String nama, String password) {
 
         if (nama == null || nama.trim().length() < 3) {
-            throw new IllegalArgumentException(
-                "Username minimal 3 karakter."
-            );
+            throw new IllegalArgumentException("Username minimal 3 karakter.");
         }
 
         if (password == null || password.length() < 6) {
-            throw new IllegalArgumentException(
-                "Password minimal 6 karakter."
-            );
+            throw new IllegalArgumentException("Password minimal 6 karakter.");
         }
 
-        return userDAO.registrasi(
-            nama.trim(), password
-        );
+        return userDAO.registrasi(nama.trim(), password);
     }
 
     // Login
-    public boolean login(
-            String nama, String password)
-            throws SQLException {
+    public boolean login(String nama, String password) {
 
         if (nama == null || nama.trim().isEmpty()
                 || password == null || password.isEmpty()) {
             return false;
         }
 
-        return userDAO.login(
-            nama.trim(), password
-        );
+        return userDAO.login(nama.trim(), password);
     }
 
     // Menampilkan makanan
-    public List<Makanan> getSemuaMakanan()
-            throws SQLException {
-
+    public List<Makanan> getSemuaMakanan() {
         return makananDAO.getSemuaMakanan();
     }
 
     // Tambah makanan
-    public void tambahMakanan(
-            String nama, double kalori)
-            throws SQLException {
+    public void tambahMakanan(String nama, double kalori) {
 
         if (nama == null || nama.trim().isEmpty()) {
-            throw new IllegalArgumentException(
-                "Nama makanan harus diisi."
-            );
+            throw new IllegalArgumentException("Nama makanan harus diisi.");
         }
 
         if (!Double.isFinite(kalori) || kalori <= 0) {
-            throw new IllegalArgumentException(
-                "Kalori harus lebih dari 0."
-            );
+            throw new IllegalArgumentException("Kalori harus lebih dari 0.");
         }
 
         makananDAO.tambah(nama.trim(), kalori);
     }
 
     // Hapus makanan
-    public boolean hapusMakanan(int id)
-            throws SQLException {
-
+    public boolean hapusMakanan(int id) {
         return makananDAO.hapus(id);
     }
 }
