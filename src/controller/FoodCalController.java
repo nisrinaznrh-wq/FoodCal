@@ -18,7 +18,11 @@ import java.util.concurrent.Executors;
 
 public class FoodCalController {
 
-    private FoodCalModel model = new FoodCalModel();
+    private final FoodCalModel model;
+
+public FoodCalController(FoodCalModel model) {
+    this.model = model;
+}
 
     private Map<String, String> sessions =
         new ConcurrentHashMap<>();

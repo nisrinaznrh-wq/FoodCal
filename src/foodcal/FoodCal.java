@@ -1,20 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package foodcal;
 
-/**
- *
- * @author user
- */
+import config.SpringConfig;
+import controller.FoodCalController;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 public class FoodCal {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        AnnotationConfigApplicationContext context =
+            new AnnotationConfigApplicationContext(
+                SpringConfig.class
+            );
+
+        FoodCalController controller =
+            context.getBean(FoodCalController.class);
+
+        controller.jalankanAplikasi();
     }
-    
 }
